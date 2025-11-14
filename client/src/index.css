@@ -1,0 +1,69 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+}
+
+/* 深色主题表格样式 */
+.dark-table .ant-table {
+  background: #001529;
+  color: #fff;
+}
+
+.dark-table .ant-table-thead > tr > th {
+  background: #001529 !important;
+  color: #fff !important;
+  border-bottom: 1px solid #434343 !important;
+}
+
+.dark-table .ant-table-tbody > tr > td {
+  background: #001529 !important;
+  color: #fff !important;
+  border-bottom: 1px solid #434343 !important;
+}
+
+.dark-table .ant-table-tbody > tr:hover > td {
+  background: #112240 !important;
+}
+
+.dark-table .ant-pagination-item {
+  background: #001529;
+  border-color: #434343;
+}
+
+.dark-table .ant-pagination-item a {
+  color: #fff;
+}
+
+.dark-table .ant-pagination-item-active {
+  background: #1890ff;
+  border-color: #1890ff;
+}
+
+.dark-table .ant-pagination-item-active a {
+  color: #fff;
+}
+
+.dark-table .ant-pagination-prev,
+.dark-table .ant-pagination-next {
+  color: #fff;
+}
+
+.dark-table .ant-pagination-prev:hover,
+.dark-table .ant-pagination-next:hover {
+  color: #1890ff;
+}
+
