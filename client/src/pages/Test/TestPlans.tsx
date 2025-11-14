@@ -12,12 +12,7 @@ import {
   Modal,
   Form,
   Select,
-  DatePicker,
-  TextArea,
   Descriptions,
-  Divider,
-  Row,
-  Col,
   Badge,
   Tooltip,
   Drawer,
@@ -28,16 +23,12 @@ import {
   FullscreenOutlined,
   PlusCircleOutlined,
   UnorderedListOutlined,
-  EditOutlined,
   EyeOutlined,
   CheckCircleOutlined,
-  EnvironmentOutlined,
-  CalendarOutlined,
-  UserOutlined,
   SettingOutlined,
 } from '@ant-design/icons'
 import type { ColumnsType } from 'antd/es/table'
-import dayjs, { Dayjs } from 'dayjs'
+import dayjs from 'dayjs'
 import { testPlanApi } from '../../api/testPlan'
 
 const { Search } = Input
@@ -99,7 +90,7 @@ const TestPlans: React.FC = () => {
   const [taskDrawerVisible, setTaskDrawerVisible] = useState(false)
 
   // 测试计划数据
-  const [testPlans, setTestPlans] = useState<TestPlanItem[]>([
+  const [testPlans] = useState<TestPlanItem[]>([
     {
       id: '1',
       planId: '1',
@@ -136,7 +127,7 @@ const TestPlans: React.FC = () => {
   ])
 
   // 测试范围数据
-  const [testScopes, setTestScopes] = useState<TestScope[]>([
+  const [testScopes] = useState<TestScope[]>([
     {
       id: '1',
       module: '用户管理',
@@ -164,7 +155,7 @@ const TestPlans: React.FC = () => {
   ])
 
   // 测试环境数据
-  const [testEnvironments, setTestEnvironments] = useState<TestEnvironment[]>([
+  const [testEnvironments] = useState<TestEnvironment[]>([
     {
       id: '1',
       name: 'SIT测试环境',

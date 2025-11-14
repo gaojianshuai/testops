@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Table, Button, Space, Tag, Card, Select, Modal, Form, Input, message, Progress } from 'antd'
-import { PlayCircleOutlined, PauseOutlined, StopOutlined } from '@ant-design/icons'
+import { PlayCircleOutlined, PauseOutlined } from '@ant-design/icons'
 import type { ColumnsType } from 'antd/es/table'
 import dayjs from 'dayjs'
 
@@ -93,7 +93,7 @@ const TestExecution: React.FC = () => {
             return {
               ...item,
               progress: newProgress,
-              status: newProgress === 100 ? 'completed' : item.status,
+              status: (newProgress === 100 ? 'completed' : item.status) as Execution['status'],
             }
           }
           return item

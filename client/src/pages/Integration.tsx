@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Card, Row, Col, Button, Tag, Modal, Form, Input, Select, message, Space, Tooltip } from 'antd'
+import { Card, Row, Col, Button, Tag, Modal, Form, Input, message, Space, Tooltip } from 'antd'
 import {
   GithubOutlined,
   GitlabOutlined,
@@ -9,7 +9,6 @@ import {
   CheckCircleOutlined,
 } from '@ant-design/icons'
 
-const { Option } = Select
 
 type IntegrationStatus = 'connected' | 'disconnected' | 'connecting'
 

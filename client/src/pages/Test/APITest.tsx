@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Card, Table, Button, Space, Tag, Modal, Form, Input, Select, Tabs, message, Popconfirm, Checkbox, Divider, Descriptions, Drawer } from 'antd'
+import { Card, Table, Button, Space, Tag, Modal, Form, Input, Select, Tabs, message, Popconfirm, Divider, Descriptions, Drawer } from 'antd'
 import {
   PlusOutlined,
   PlayCircleOutlined,
@@ -202,7 +202,7 @@ const APITest: React.FC = () => {
   }
 
   const handleBatchExecute = () => {
-    batchForm.validateFields().then((values) => {
+    batchForm.validateFields().then(() => {
       const testIds = selectedTests
       message.info(`开始批量执行 ${testIds.length} 个测试`)
 

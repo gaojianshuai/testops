@@ -1,9 +1,9 @@
 import { useState, useEffect, useMemo } from 'react'
 import { Card, Row, Col, Table, Tag, Button, Space, Select, Descriptions, Statistic, Switch } from 'antd'
-import { DownloadOutlined, EyeOutlined, ReloadOutlined } from '@ant-design/icons'
+import { DownloadOutlined, ReloadOutlined } from '@ant-design/icons'
 import type { ColumnsType } from 'antd/es/table'
 import { BarChart, Bar, PieChart, Pie, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell, ResponsiveContainer } from 'recharts'
-import { getTestStatistics, getHistoricalBuilds, getTestExecutions, subscribeToTestData, type TestExecutionRecord } from '../../utils/testDataManager'
+import { getTestStatistics, getHistoricalBuilds, subscribeToTestData } from '../../utils/testDataManager'
 import dayjs from 'dayjs'
 
 const { Option } = Select
@@ -24,7 +24,7 @@ const TestReport: React.FC = () => {
   const [resultFilter, setResultFilter] = useState('all')
   const [testTypeFilter, setTestTypeFilter] = useState('all')
   const [autoRefresh, setAutoRefresh] = useState(true)
-  const [refreshInterval, setRefreshInterval] = useState(5000) // 5秒刷新一次
+  const [refreshInterval] = useState(5000) // 5秒刷新一次
   const [lastUpdateTime, setLastUpdateTime] = useState<string>(new Date().toISOString())
 
   // 获取统计数据
@@ -67,16 +67,18 @@ const TestReport: React.FC = () => {
 
   // 转换执行记录为测试用例详情
   const testCaseDetails: TestCaseDetail[] = useMemo(() => {
-    return testData.executions.map((exec, index) => ({
-      id: exec.id,
-      module: exec.module || `${exec.testType}/${exec.testName}`,
-      method: exec.method || exec.testName,
-      description: exec.description || `${exec.testType}测试`,
-      executionTime: exec.executionTime / 1000, // 转换为秒
-      result: exec.status,
-      testType: exec.testType,
-      testName: exec.testName,
-    }))
+    return testData.executions
+      .filter((exec) => exec.status !== 'running') // 过滤掉运行中的状态
+      .map((exec) => ({
+        id: exec.id,
+        module: exec.module || `${exec.testType}/${exec.testName}`,
+        method: exec.method || exec.testName,
+        description: exec.description || `${exec.testType}测试`,
+        executionTime: exec.executionTime / 1000, // 转换为秒
+        result: exec.status as TestCaseDetail['result'],
+        testType: exec.testType,
+        testName: exec.testName,
+      }))
   }, [testData.executions])
 
   // 执行结果柱状图数据
@@ -223,7 +225,7 @@ const TestReport: React.FC = () => {
       title: '详细信息',
       key: 'action',
       width: 120,
-      render: (_, record) => (
+      render: () => (
         <Button type="link" size="small">
           查看详情
         </Button>
@@ -344,7 +346,7 @@ const TestReport: React.FC = () => {
                   fill="#8884d8"
                   dataKey="value"
                 >
-                  {pieData.map((entry, index) => (
+                  {pieData.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
