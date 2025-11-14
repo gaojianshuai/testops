@@ -13,10 +13,9 @@
     "jsx": "react-jsx",
     "strict": true,
     "noUnusedLocals": false,
-    "noUnusedParameters": false,
+    "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": false
   },
-  "include": ["client/src"],
-  "references": [{ "path": "./client" }]
+  "include": ["client/src"]
 }
 
